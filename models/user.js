@@ -1,7 +1,15 @@
 const mongoose = require("mongoose")
 
 const userSchema = new mongoose.Schema({
-    username: {
+    email: {
+        type: String,
+        required: true
+    },
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName: {
         type: String,
         required: true
     },
@@ -10,7 +18,7 @@ const userSchema = new mongoose.Schema({
         required: true
     }
 
-})
+}, {timestamps: true} )
 
 userSchema.set("toJSON", {
     transform: (document, returnedObject) => {

@@ -7,7 +7,7 @@ const verifyToken = require("../middleware/verify-token.js")
 // here we are protecting a route ensuring a user must be loggin to access any data
 router.get("/", verifyToken, async ( req, res) => {
     try {
-        const users = await User.find({}, "username")
+        const users = await User.find({})
 
         res.json(users)
     } catch (error) {

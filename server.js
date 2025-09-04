@@ -5,7 +5,6 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const logger = require('morgan');
-const testJwtRouter = require('./controllers/test-jwt');
 const authRouter = require('./controllers/auth');
 const userRouter = require("./controllers/user.js")
 
@@ -21,7 +20,6 @@ app.use(express.json());
 app.use(logger('dev'));
 
 // Routes go here
-app.use('/test-jwt', testJwtRouter);
 app.use('/auth', authRouter);
 app.use("/user", userRouter)
 
