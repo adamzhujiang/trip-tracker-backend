@@ -8,7 +8,7 @@ const logger = require('morgan');
 const authRouter = require('./controllers/auth');
 const userRouter = require("./controllers/user.js")
 const destinationRouter = require("./controllers/destination.js")
-
+const tripRouter = require("./controllers/trip.js")
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -26,5 +26,5 @@ app.use("/user", userRouter)
 app.use('/trips', tripRouter)
 
 app.listen(3000, () => {
-  console.log(`The express app is on port ${PORT}!`);
+  console.log(`The express app is on port ${3000}!`);
 });
