@@ -7,7 +7,8 @@ const cors = require('cors');
 const logger = require('morgan');
 const authRouter = require('./controllers/auth');
 const userRouter = require("./controllers/user.js")
-
+const tripRouter = require("./controllers/trip.js")
+const PORT = process.env.PORT || 3000
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -22,8 +23,8 @@ app.use(logger('dev'));
 // Routes go here
 app.use('/auth', authRouter);
 app.use("/user", userRouter)
-console.log("for test")
+app.use('/trips', tripRouter)
 
 app.listen(3000, () => {
-  console.log('The express app is ready!');
+  console.log(`The express app is on port ${PORT}!`);
 });

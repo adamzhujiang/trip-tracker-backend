@@ -1,7 +1,19 @@
 const mongoose = require("mongoose")
-const User = require("../models/user.js")
-const Review = require("../models/review.js")
 
+const reviewSchema = new mongoose.Schema({
+    rating: {
+        type: String,
+        required: true
+    },
+    comment: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
+}, {timestamps: true})
 
 const destinationSchema = new mongoose.Schema({
     country: {
@@ -14,7 +26,7 @@ const destinationSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required
+        required: true
     }, 
     author: {
         type: mongoose.Schema.Types.ObjectId,
@@ -43,11 +55,9 @@ const tripSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    reviews: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Reviews"
-    },
-    destination: [destinationSchema]
+
+    destination: [destinationSchema],
+    reviews: [reviewSchema],
 }, {timestamps: true})
 
 const Trip = mongoose.model("Trip", tripSchema)
