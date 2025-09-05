@@ -23,8 +23,8 @@ app.use(logger('dev'));
 // Routes go here
 app.use('/auth', authRouter);
 app.use("/user", userRouter)
-console.log("for test")
+app.use('/trips', tripRouter)
 
 app.listen(3000, () => {
-  console.log('The express app is ready!');
+  console.log(`The express app is on port ${PORT}!`);
 });
