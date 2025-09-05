@@ -7,6 +7,7 @@ const cors = require('cors');
 const logger = require('morgan');
 const authRouter = require('./controllers/auth');
 const userRouter = require("./controllers/user.js")
+const destinationRouter = require("./controllers/destination.js")
 
 
 mongoose.connect(process.env.MONGODB_URI);
