@@ -24,7 +24,7 @@ router.post('/sign-up', async (req, res) => {
       password: bcrypt.hashSync(req.body.password, saltRounds)
     })
     // Create a new auth jwt token for the new user
-    const payload = { email: user.email, _id : user._id}
+    const payload = { email: user.email, firstName: user.firstName, lastName: user.lastName, _id : user._id}
 
     const token = jwt.sign({ payload }, process.env.JWT_SECRET)
 
