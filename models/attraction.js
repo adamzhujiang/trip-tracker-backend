@@ -1,5 +1,22 @@
 const mongoose = require("mongoose")
 
+
+const reviewSchema = new mongoose.Schema({
+    rating: {
+        type: String,
+        required: true
+    },
+    comment: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
+}, {timestamps: true})
+
+
 const attractionSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -13,15 +30,12 @@ const attractionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    reviews: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Review"
+    author : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User"
     },
-    trip: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Trip"
-    }
-    
+    destination: { type: mongoose.Schema.Types.ObjectId, ref: "Destination" },
+    attractionReviews : [reviewSchema]
 }, {timestamps: true})
 
 const Attraction = mongoose.model("Attraction", attractionSchema)

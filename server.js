@@ -9,6 +9,7 @@ const authRouter = require('./controllers/auth');
 const userRouter = require("./controllers/user.js")
 const destinationRouter = require("./controllers/destination.js")
 const tripRouter = require("./controllers/trip.js")
+const attractionRouter = require("./controllers/attraction.js")
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -24,6 +25,8 @@ app.use(logger('dev'));
 app.use('/auth', authRouter);
 app.use("/user", userRouter)
 app.use('/trips', tripRouter)
+app.use("/trips/:tripId/destinations", destinationRouter)
+app.use("/destinations/:destinationId/attractions", attractionRouter)
 
 app.listen(3000, () => {
   console.log(`The express app is on port ${3000}!`);

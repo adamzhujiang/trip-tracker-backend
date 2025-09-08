@@ -15,24 +15,7 @@ const reviewSchema = new mongoose.Schema({
     }
 }, {timestamps: true})
 
-const destinationSchema = new mongoose.Schema({
-    country: {
-        type: String,
-        required: true,
-    },
-    city: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    }, 
-    author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-    },
-}, {timestamps: true})
+
 
 const tripSchema = new mongoose.Schema({
     travelers: {
@@ -55,8 +38,7 @@ const tripSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-
-    destination: [destinationSchema],
+    destinations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Destination" }],
     reviews: [reviewSchema],
 }, {timestamps: true})
 
