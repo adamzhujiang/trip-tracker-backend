@@ -6,6 +6,18 @@ const Destination = require("../models/destination.js")
 const Trip = require("../models/trip.js")
 
 
+// GET all destinations for a trip
+router.get("/", async (req, res) => {
+  try {
+    const trip = await Trip.findById(req.params.tripId).populate("destinations");
+    if (!trip) return res.status(404).json({ error: "Trip not found" });
+    res.json(trip.destinations);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // add destination to trip
 router.post("/", verifyToken, async (req, res) => {
   try {
