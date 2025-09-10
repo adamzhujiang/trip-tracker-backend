@@ -51,7 +51,7 @@ router.post("/sign-in", async (req, res) => {
       return res.status(401).json({err: "Invalid Password"})
     }
 
-    const payload = { email: userInDatabase.email, _id : userInDatabase._id}
+    const payload = { email: userInDatabase.email, firstName: userInDatabase.firstName, lastName: userInDatabase.lastName, _id : userInDatabase._id}
     
     // Create a new auth jwt token for the new user
     const token = jwt.sign({ payload }, process.env.JWT_SECRET)
