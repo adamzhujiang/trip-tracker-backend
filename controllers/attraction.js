@@ -9,7 +9,7 @@ const Destination = require("../models/destination.js")
 // Show All Attractions
 router.get("/", verifyToken, async (req, res) => {
     try {
-        const attractions = await Attraction.find({})
+        const attractions = await Attraction.find({}).populate("author")
 
         res.status(201).json(attractions)
     } catch (error) {
@@ -119,7 +119,7 @@ router.delete("/:attractionId", verifyToken, async (req, res) => {
 // Create attraction Review 
 router.post("/:attractionId/reviews", verifyToken, async (req, res) => {
     try {
-        const attraction = await Attraction.findById(req.params.attractionId)
+        const attraction = await Attraction.findById(req.params.attractionId).populate("author")
         if(!attraction) {
             return res.status(404).json({error : "Attraction not found"})
         }
